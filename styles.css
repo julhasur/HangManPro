@@ -1,0 +1,64 @@
+.outer-container {
+    display: flex;
+    flex-direction: column; /* Stack container and buttons vertically */
+    align-items: center; /* Center content horizontally */
+    justify-content: center; /* Center layout vertically */
+    height: 100vh; /* Full viewport height */
+}
+
+.container {
+    width: 600px;
+    height: 600px; /* Adjust height to fit the timer, boxes, and Hangman */
+    display: flex; /* Use flexbox to position items horizontally */
+    justify-content: space-between; /* Space between left, center, and right sections */
+    align-items: center; /* Center items vertically */
+    border: 3px solid black;
+    padding: 20px;
+}
+
+.left-box,
+.center-box,
+.right-box {
+    display: flex;
+    flex-direction: column; /* Stack items vertically in each section */
+    align-items: center; /* Center items horizontally within their section */
+    gap: 20px; /* Space between stacked items */
+}
+
+/* Hangman drawing box */
+
+.center-box{
+    border: 2px solid rgb(57, 227, 35);
+    height:300px ;
+    width: 250px;
+    position: absolute;
+    left: 200px;
+    top: 40px;
+}
+.manbox{
+   
+    border:2px solid black;
+   display: flex;
+
+}
+/* Small boxes */
+.sbox {
+    border: 2px solid black;
+    width: 100px;
+    height: 30px;
+    text-align: center;
+    line-height: 30px; /* Center text vertically */
+}
+
+/* Buttons section */
+.buttons {
+    border: 2px solid black;
+    margin-left: 240PX;
+    position:absolute;
+ 
+    margin-top: 70px; /* Add space above buttons */
+    display: flex;
+    gap: 10px; /* Space between buttons */
+    justify-content:center; /* Center buttons horizontally */
+    align-items:end;
+}
