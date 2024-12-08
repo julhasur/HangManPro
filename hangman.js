@@ -1,5 +1,7 @@
+//i am planning to add more  arrays and so player can select categories to play with still figuring out how to do it
 var animal=["Aardvark","Albatross","Alligator","Alpaca","Ant","Anteater","Antelope","Ape","Armadillo","Donkey","Baboon","Badger","Barracuda","Bat","Bear","Beaver","Bee","Bison","Boar",
 ]
+const keyboard=document.getElementById('keyboard');
 let answer='';
 let maxWrong=6;
 let mistakes =0;
@@ -59,17 +61,28 @@ function updateMistakes() {
 //reason my game won function was not working is here wordstatus was comparing to answer with spaces on wordstatues as i used join method on guess word function so it was comparing to answer with spaces.found a solution to remove spaces
 function gamewon() {
     if (wordStatus.replace(/ /g,'') === answer.split('').join('')) {
-        document.getElementById('keyboard').innerHTML = "You are the champion!";
+       keyboard.innerHTML = "You are the champion!";
+       keyboard.style.color = "green";
+       keyboard.style.fontSize = "30px";
+       keyboard.style.textShadow = "2px 2px 4px #000000";
+       keyboard.style.fontWeight = "bold";
+      
     }
 }
 
 function gamelost() {
     if (mistakes===maxWrong) {
-        document.getElementById('keyboard').innerHTML = "You are a Loser!";
+        keyboard.innerHTML = "You Lost your Life!";
+        keyboard.style.color = "red";
+        keyboard.style.fontSize = "30px";
+        keyboard.style.textShadow = "2px 2px 4px #000000";
+        keyboard.style.fontWeight = "bold";
     }
 }
 
-
+function updateMistakes() {
+    document.getElementById('mistakes').innerHTML = mistakes;
+}
 
 
 
@@ -85,15 +98,18 @@ function guessedWord() {
             return "_";
         }
     })
-    //my "_" was coming as joined forgot to add space
+    //my "_" was coming as joined "_____"forgot to add space
    .join(" ");
     document.getElementById('wordSpotlight').innerHTML = wordStatus;
+
 
 }
 randomWord();
 document.getElementById('maxWrong').innerHTML = maxWrong;
 document.getElementById('answer').innerHTML = answer;
 
+const gamecontainer = document.querySelector('.container');
+gamecontainer.style.backgroundImage = "url('images/hangmanback.png')";
 generateButtons();
 guessedWord();
 handleGuess();
