@@ -3,7 +3,7 @@ var animal=["Aardvark","Albatross","Alligator","Alpaca","Ant","Anteater","Antelo
 let answer='';
 let maxWrong=6;
 let mistakes =0;
-wordStatus='';
+wordStatus=null;
 // Array to store the letters guessed by the player
 let guessed = [];
 
@@ -40,7 +40,7 @@ function handleGuess(passedLetter) {
         guessed.push(passedLetter);
     }
         document.getElementById(passedLetter).setAttribute('disabled', true);
-        alert(answer);
+        // alert(answer);
     if (answer.indexOf(passedLetter) >= 0) {
         guessedWord();
         gamewon();
@@ -48,6 +48,7 @@ function handleGuess(passedLetter) {
     else if(answer.indexOf(passedLetter) === -1) {
         mistakes++;
         updateMistakes();
+        gamelost();
     }
 }
 
@@ -55,8 +56,9 @@ function updateMistakes() {
     document.getElementById('mistakes').innerHTML = mistakes;
 }
 
+//reason my game won function was not working is here wordstatus was comparing to answer with spaces on wordstatues as i used join method on guess word function so it was comparing to answer with spaces.found a solution to remove spaces
 function gamewon() {
-    if (wordStatus === answer) {
+    if (wordStatus.replace(/ /g,'') === answer.split('').join('')) {
         document.getElementById('keyboard').innerHTML = "You are the champion!";
     }
 }
@@ -76,20 +78,22 @@ function gamelost() {
  //function to write the letters guessed by the player
 function guessedWord() {
     wordStatus = answer.split('').map(letter => {
-        if(guessed.includes(letter)) {
+        if(guessed.indexOf(letter)>=0) {
             return letter;
         }
         else{
             return "_";
         }
     })
-    //my _ was coming as joined forgot to add space
-    .join(' ');
+    //my "_" was coming as joined forgot to add space
+   .join(" ");
     document.getElementById('wordSpotlight').innerHTML = wordStatus;
+
 }
-
-
 randomWord();
+document.getElementById('maxWrong').innerHTML = maxWrong;
+document.getElementById('answer').innerHTML = answer;
+
 generateButtons();
 guessedWord();
 handleGuess();
