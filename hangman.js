@@ -39,7 +39,9 @@ function generateButtons() {
 function handleGuess(passedLetter) {
     // guessed.indexOf(passedLetter) === -1 ? guessed.push(passedLetter) : null;........? //null  i tried not using null as i am not running anything as else statment but program throws error with out it , using if statement isead
     if (guessed.indexOf(passedLetter) === -1) {
+        consolele.log(passedLetter);
         guessed.push(passedLetter);
+
     }
         document.getElementById(passedLetter).setAttribute('disabled', true);
         // alert(answer);
@@ -51,6 +53,7 @@ function handleGuess(passedLetter) {
         mistakes++;
         updateMistakes();
         gamelost();
+        updatePicutre();
     }
 }
 
@@ -58,7 +61,7 @@ function updateMistakes() {
     document.getElementById('mistakes').innerHTML = mistakes;
 }
 
-//reason my game won function was not working, here wordstatus was comparing to answer with "  spaces on wordstatues ,as i used join method on guess word function so it was comparing to' answer ' with spaces compare failed.found a solution to remove spaces
+//reason my 'game 'won function was not working, here wordstatus was comparing to answer with "  spaces on wordstatues ,as i used join method on guess word function so it was comparing to' answer ' with spaces as a result compare failed.found a solution to remove spaces
 function gamewon() {
     if (wordStatus.replace(/ /g,'') === answer.split('').join('')) {
        keyboard.innerHTML = "You are the champion!";
@@ -105,12 +108,19 @@ function guessedWord() {
 
 
 }
+//update picture
+//stack overflow has good example of how to update pictures
+function updatePicutre(){
+//here i have kept the names of the pictures same as mistakes so it is easy to update
+    document.getElementById('hangmanPic').src = "./images/" + mistakes + ".jpg";
+}
+
 
 //reset function
 function reset() {
     mistakes = 0;
     guessed = [];
-    document.getElementById('hangmanpic').src = "images/0.jpg";
+    document.getElementById('hangmanPic').src = "images/0.jpg";
     updateMistakes();
     guessedWord();
     generateButtons();
@@ -125,3 +135,4 @@ gamecontainer.style.backgroundImage = "url('images/hangmanback.png')";
 generateButtons();
 guessedWord();
 handleGuess();
+// updatePicutre();
