@@ -1,4 +1,4 @@
-//i am planning to add more  arrays and so player can select categories to play with still figuring out how to do it
+//i am planning to add more  arrays and so player can select categories to play with still figuring out how to do it, also need to add music on and off button but totaly clueless about it 
 var animal=["Aardvark","Albatross","Alligator","Alpaca","Ant","Anteater","Antelope","Ape","Armadillo","Donkey","Baboon","Badger","Barracuda","Bat","Bear","Beaver","Bee","Bison","Boar",
 ]
 let keyboard=document.getElementById('keyboard');
