@@ -1,4 +1,4 @@
-//i am planning to add more  arrays and so player can select categories to play with still figuring out how to do it, also need to add music on and off button but totaly clueless about it 
+//i am planning to add more  arrays OR CAN I CREATE JSON FILE AND USE API OR SOMETHING? SO player can select categories to play with still figuring out how to do it, also need to add music on and off button but totaly clueless about it 
 var animal=["Aardvark","Albatross","Alligator","Alpaca","Ant","Anteater","Antelope","Ape","Armadillo","Donkey","Baboon","Badger","Barracuda","Bat","Bear","Beaver","Bee","Bison","Boar",
 ]
 let keyboard=document.getElementById('keyboard');
@@ -69,7 +69,7 @@ function updateMistakes() {
     document.getElementById('mistakes').innerHTML = mistakes;
 }
 
-//reason my 'gamewon' function was not working, here wordstatus was comparing to answer with "  spaces on wordstatues ,as i used join method on guess word function so it was comparing to' answer ' with spaces as a result compare failed.found a solution to remove spaces
+//reason my 'gamewon' function was not working, here wordstatus was comparing to answer with "  spaces on wordstatues ,as i used join method on guess word function so it was comparing ===' answer ' with spaces as a result compare failed.found a solution to remove spaces FROM WORDSTATUS
 function gamewon() {
     if (wordStatus.replace(/ /g,'') === answer.split('').join('')) {
        keyboard.innerHTML = "You are the champion!";
