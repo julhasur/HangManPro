@@ -58,7 +58,7 @@ function updateMistakes() {
     document.getElementById('mistakes').innerHTML = mistakes;
 }
 
-//reason my game won function was not working is here wordstatus was comparing to answer with spaces on wordstatues as i used join method on guess word function so it was comparing to answer with spaces.found a solution to remove spaces
+//reason my game won function was not working, here wordstatus was comparing to answer with "  spaces on wordstatues ,as i used join method on guess word function so it was comparing to' answer ' with spaces compare failed.found a solution to remove spaces
 function gamewon() {
     if (wordStatus.replace(/ /g,'') === answer.split('').join('')) {
        keyboard.innerHTML = "You are the champion!";
@@ -103,6 +103,17 @@ function guessedWord() {
     document.getElementById('wordSpotlight').innerHTML = wordStatus;
 
 
+}
+
+//reset function
+function reset() {
+    mistakes = 0;
+    guessed = [];
+    document.getElementById('hangmanpic').src = "images/0.jpg";
+    updateMistakes();
+    guessedWord();
+    generateButtons();
+    randomWord();
 }
 randomWord();
 document.getElementById('maxWrong').innerHTML = maxWrong;
