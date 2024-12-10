@@ -1,19 +1,28 @@
 //i am planning to add more  arrays and so player can select categories to play with still figuring out how to do it
 var animal=["Aardvark","Albatross","Alligator","Alpaca","Ant","Anteater","Antelope","Ape","Armadillo","Donkey","Baboon","Badger","Barracuda","Bat","Bear","Beaver","Bee","Bison","Boar",
 ]
-const keyboard=document.getElementById('keyboard');
+let keyboard=document.getElementById('keyboard');
 let answer='';
 let maxWrong=6;
 let mistakes =0;
 wordStatus=null;
 // Array to store the letters guessed by the player
 let guessed = [];
+//music
+// read this doc from chrome to resolve any browswer autoplay issue https://developer.chrome.com/blog/autoplay/
+window.onload = function() {
+    const backgroundMusic = document.getElementById('backgroundMusic');
+backgroundMusic.play();
+
+
+
+}
 
 // Function to generate a random animal name
 //reqiorement 3 iterate over a collection of el for some task
 function randomWord() {
     answer= animal[Math.floor(Math.random()*animal.length)].toLocaleLowerCase();
-   // Checks anwer with alert message
+   // Checks anwer with alert message,learned my lesson if characters of array is not lowered or upper case (not same as keyboared) it will not work wasted an hour debugging this
 }
 //button generating function
 function generateButtons() {
@@ -37,9 +46,8 @@ function generateButtons() {
 
 
 function handleGuess(passedLetter) {
-    // guessed.indexOf(passedLetter) === -1 ? guessed.push(passedLetter) : null;........? //null  i tried not using null as i am not running anything as else statment but program throws error with out it , using if statement isead
+    // guessed.indexOf(passedLetter) === -1 ? guessed.push(passedLetter) : null;........? //null  i tried not using null as i am not running anything as else statment but program throws error with out it dont know why , using if statement instead
     if (guessed.indexOf(passedLetter) === -1) {
-        consolele.log(passedLetter);
         guessed.push(passedLetter);
 
     }
@@ -61,7 +69,7 @@ function updateMistakes() {
     document.getElementById('mistakes').innerHTML = mistakes;
 }
 
-//reason my 'game 'won function was not working, here wordstatus was comparing to answer with "  spaces on wordstatues ,as i used join method on guess word function so it was comparing to' answer ' with spaces as a result compare failed.found a solution to remove spaces
+//reason my 'gamewon' function was not working, here wordstatus was comparing to answer with "  spaces on wordstatues ,as i used join method on guess word function so it was comparing to' answer ' with spaces as a result compare failed.found a solution to remove spaces
 function gamewon() {
     if (wordStatus.replace(/ /g,'') === answer.split('').join('')) {
        keyboard.innerHTML = "You are the champion!";
@@ -92,7 +100,7 @@ function updateMistakes() {
 
 
 
- //function to write the letters guessed by the player
+ //functio n to write the letters guessed by the player
 function guessedWord() {
     wordStatus = answer.split('').map(letter => {
         if(guessed.indexOf(letter)>=0) {
@@ -126,13 +134,42 @@ function reset() {
     generateButtons();
     randomWord();
 }
+//https://stackoverflow.com/questions/13983764/creating-falling-snow-using-html-5-and-js there are bunch of ways to do it by following the posts this is the simples way i figured,this is just for experiment
+function createSnowflakes() {
+    const snowflakeContainer = document.querySelector('.snowflakes');
+    const numSnowflakes = 50; // Adjust the number of snowflakes
+
+    for (let i = 0; i < numSnowflakes; i++) {
+        const snowflake = document.createElement('div');
+        snowflake.classList.add('snowflake');
+
+        const size = Math.random() * 8 + 5; // Random size between 8px and 13px
+        snowflake.style.width = `${size}px`;
+        snowflake.style.height = `${size}px`;
+        snowflake.style.left = `${Math.random() * 100}%`; // Random horizontal position
+        snowflake.style.animationDuration = `${Math.random() * 3 + 2}s`; // speed testing with this one
+        snowflake.style.animationDelay = `${Math.random() * 5}s`; // Random delay
+
+        // appending this as a child of snowflake container which meets another project requirement 
+        snowflakeContainer.appendChild(snowflake);
+    }
+}
+
+
+
+
+
+
+
+
 randomWord();
+guessedWord();
 document.getElementById('maxWrong').innerHTML = maxWrong;
 document.getElementById('answer').innerHTML = answer;
 
 const gamecontainer = document.querySelector('.container');
 gamecontainer.style.backgroundImage = "url('images/hangmanback.png')";
 generateButtons();
-guessedWord();
+createSnowflakes();
 handleGuess();
-// updatePicutre();
+ updatePicutre();

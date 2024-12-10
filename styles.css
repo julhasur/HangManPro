@@ -1,0 +1,25 @@
+.snowflakes {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /*this is really important part this will prevent the snowflakes from being clicked and keyboared is active , did not use it and had huge issue*/
+    overflow: hidden;
+    z-index: 1000;
+}
+
+.snowflake {
+    position: absolute;
+    top: -10px;
+    background-color: white;
+    border-radius: 50%;
+    opacity: 0.8;
+    animation: fallig linear infinite;
+}
+
+@keyframes fallig {
+    to {
+        transform: translateY(100vh) rotate(360deg);
+    }
+}
