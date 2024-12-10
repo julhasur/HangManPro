@@ -73,6 +73,7 @@ function gamewon() {
 function gamelost() {
     if (mistakes===maxWrong) {
         keyboard.innerHTML = "You Lost your Life!";
+        document.getElementById('wordSpotlight').innerHTML ="The answer was:"+ answer;
         keyboard.style.color = "red";
         keyboard.style.fontSize = "30px";
         keyboard.style.textShadow = "2px 2px 4px #000000";
